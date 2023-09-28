@@ -1,30 +1,26 @@
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Button,
-  SafeAreaView,
-  Pressable,
-} from "react-native";
+import { View, Text, Image, StyleSheet, Button, SafeAreaView, Pressable } from "react-native";
 import React from "react";
-import { products } from "../data/products";
 import Header from "../components/Header";
+import { AntDesign } from "@expo/vector-icons";
+import { colors } from "../theme/colors";
 
-const ProductDetail = ({ navigation }) => {
-  const initialProd = products[1];
+const ProductDetail = ({ navigation, route }) => {
+  const { item } = route.params;
 
   return (
     <SafeAreaView>
       <Header title="Detalle" navigation={navigation} />
-      <Pressable onPress={() => navigation.goBack()}>
-        <Text> Ir Atrás </Text>
+      <Pressable
+        style={{ marginLeft: 15, marginBottom: 10 }}
+        onPress={() => navigation.goBack()}
+      >
+        <AntDesign name="caretleft" size={24} color={colors.mediumBlue} />
       </Pressable>
       <View style={styles.containerImage}>
         <Image
           style={styles.image}
           source={{
-            uri: initialProd.images[2],
+            uri: item.images[0],
           }}
         />
         <View
@@ -33,16 +29,16 @@ const ProductDetail = ({ navigation }) => {
             alignItems: "center",
           }}
         >
-          <Text style={styles.title}> {initialProd.title} </Text>
-          <Text style={styles.price}> ${initialProd.price} </Text>
+          <Text style={styles.title}> {item.title} </Text>
+          <Text style={styles.price}> ${item.price} </Text>
         </View>
-        <Text style={styles.description}> {initialProd.description} </Text>
+        <Text style={styles.description}> {item.description} </Text>
         <Button
-          color="green"
+          color="black"
           title="Agregar al carrito"
-          onPress={() => console.log("ok")}
+          onPress={() => console.log("Hola funciona")}
         />
-        <Text style={styles.description}> Rating: {initialProd.rating} </Text>
+        <Text style={styles.description}> Rating: {item.rating} </Text>
       </View>
     </SafeAreaView>
   );

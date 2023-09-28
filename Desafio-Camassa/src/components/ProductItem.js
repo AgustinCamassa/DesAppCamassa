@@ -8,7 +8,7 @@ const ProductItem = ({ item, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => navigation.navigate("productDetail")}>
+      <Pressable onPress={() => navigation.navigate("productDetail", { item })}>
         <Text style={width < 300 ? styles.textMin : styles.text}>
           {item.title}
         </Text>
@@ -41,11 +41,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "900",
     marginLeft: 20,
+    width: "70%",
   },
   textMin: {
     fontSize: 10,
     fontWeight: "900",
     marginLeft: 20,
+    width: "70%",
   },
   image: {
     marginRight: 10,
